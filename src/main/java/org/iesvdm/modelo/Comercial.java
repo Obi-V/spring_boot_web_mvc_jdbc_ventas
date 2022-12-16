@@ -7,6 +7,9 @@ import lombok.Data;
 @AllArgsConstructor
 public class Comercial {
 
+	public Comercial() {
+	
+	}
 	private int id;
 	private String nombre;
 	private String apellido1;

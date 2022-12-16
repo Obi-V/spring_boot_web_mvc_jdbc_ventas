@@ -10,6 +10,10 @@ import lombok.Data;
 @AllArgsConstructor
 public class Cliente {
 	
+	public Cliente() {
+		
+	}
+	
 	private long id;
 	private String nombre;
 	private String apellido1;
