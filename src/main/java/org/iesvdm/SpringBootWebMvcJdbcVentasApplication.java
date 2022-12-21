@@ -26,8 +26,14 @@ public class SpringBootWebMvcJdbcVentasApplication implements CommandLineRunner{
 		SpringApplication.run(SpringBootWebMvcJdbcVentasApplication.class, args);
 		
 	}
-	
+
 	@Override
+	public void run(String... args) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+	
+/*	@Override
 	public void run(String... args) throws Exception {
 		log.info("*******************************");
 		log.info("*Prueba de arranque ClienteDAO*");
@@ -57,7 +63,7 @@ public class SpringBootWebMvcJdbcVentasApplication implements CommandLineRunner{
 			
 		}
 		
-		// Como es un cliente nuevo a persistir, id a 0
+		//Como es un cliente nuevo a persistir, id a 0
 		Cliente clienteNew = new Cliente(0, "Jose M", "Martín", null, "Málaga", 100);
 		
 		//create actualiza el id
@@ -125,5 +131,5 @@ public class SpringBootWebMvcJdbcVentasApplication implements CommandLineRunner{
 		log.info("*FIN: Prueba de arranque ComercialDAO*");
 		log.info("************************************");
 	}
-
+*/
 }

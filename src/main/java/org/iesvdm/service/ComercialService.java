@@ -3,7 +3,10 @@ package org.iesvdm.service;
 import java.util.List;
 import java.util.Optional;
 import org.iesvdm.dao.ComercialDAO;
+import org.iesvdm.dao.PedidoDAO;
+import org.iesvdm.dto.ComercialDTO;
 import org.iesvdm.modelo.Comercial;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -30,6 +33,21 @@ public class ComercialService {
 			return optCom.get();
 		else 
 			return null;
+	}
+	
+	@Autowired
+	private PedidoDAO pedidoDAO;
+	
+	public ComercialDTO oneDTO(Integer id) {
+		Optional<Comercial> optCom = comercialDAO.find(id);
+		if (optCom.isPresent()) {
+			Comercial c = optCom.get();
+			ComercialDTO comercialDTO = new ComercialDTO();
+			comercialDTO.setPedidos(pedidoDAO.getAll(comercialDTO.getComercial().getId()));
+		
+			return comercialDTO;}
+		else {
+			return null;}
 	}
 	
 	public void newComercial(Comercial comercial) {

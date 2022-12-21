@@ -12,7 +12,7 @@
 
 </style>
 </head>
-<body>
+
 <body>
 
 	<div id="contenedora" style="float:none; margin: 0 auto;width: 900px;" >
@@ -35,12 +35,12 @@
 			<hr/>
 		</div>
 		<div class="clearfix">
-			<div style="float: left;width: 14%">Código</div>
-			<div style="float: left;width: 14%">Nombre</div>
-			<div style="float: left;width: 14%">Apellido 1</div>
-			<div style="float: left;width: 14%">Apellido 2</div>
-			<div style="float: left;width: 14%">Ciudad</div>
-			<div style="float: left;width: 14%">Categoría</div>
+			<div style="float: left;width: 12%">Código</div>
+			<div style="float: left;width: 12%">Nombre</div>
+			<div style="float: left;width: 12%">Apellido 1</div>
+			<div style="float: left;width: 12%">Apellido 2</div>
+			<div style="float: left;width: 12%">Ciudad</div>
+			<div style="float: left;width: 12%">Categoría</div>
 			<div style="float: none;width: auto;overflow: hidden;">Acción</div>
 		</div>
 		<div class="clearfix">
@@ -48,12 +48,12 @@
 		</div>
 
 		<div  th:each="cliente : ${listaClientes}" style="margin-top: 6px;" class="clearfix">
-			<div style="float: left;width: 14%" th:text="${cliente.id}">ID</div>
-			<div style="float: left;width: 14%" th:text="${cliente.nombre}">Nombre</div>
-			<div style="float: left;width: 14%" th:text="${cliente.apellido1}">Apellido 1</div>
-			<div style="float: left;width: 14%" th:text="${cliente.apellido2 ?: '&nbsp;'}">Apellido 2</div>
-			<div style="float: left;width: 14%" th:text="${cliente.ciudad}">Ciudad</div>
-			<div style="float: left;width: 14%" th:text="${cliente.categoria}">Categoría</div>
+			<div style="float: left;width: 12%" th:text="${cliente.id}">ID</div>
+			<div style="float: left;width: 12%" th:text="${cliente.nombre}">Nombre</div>
+			<div style="float: left;width: 12%" th:text="${cliente.apellido1}">Apellido 1</div>
+			<div style="float: left;width: 12%" th:text="${cliente.apellido2 ?: '&nbsp;'}">Apellido 2</div>
+			<div style="float: left;width: 12%" th:text="${cliente.ciudad}">Ciudad</div>
+			<div style="float: left;width: 12%" th:text="${cliente.categoria}">Categoría</div>
 			<div style="float: none;width: auto;overflow: hidden;">
 				<form th:action="@{/clientes/__${cliente.id}__}" style="display: inline;">
     				<input type="submit" value="Ver Detalle" />
@@ -67,6 +67,5 @@
 			</div>
 		</div>
 	</div>
-</body>
 </body>
 </html>

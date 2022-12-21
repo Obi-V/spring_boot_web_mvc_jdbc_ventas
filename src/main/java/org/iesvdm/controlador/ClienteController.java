@@ -1,9 +1,7 @@
 package org.iesvdm.controlador;
 
 import java.util.List;
-
 import org.iesvdm.modelo.Cliente;
-import org.iesvdm.modelo.Comercial;
 import org.iesvdm.service.ClienteService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,7 +52,7 @@ public class ClienteController {
 	}
 
 	@GetMapping("/clientes/crear")
-	public String crear(Model model){
+	public String crear(Model model) {
 		
 		Cliente cliente = new Cliente();
 		model.addAttribute("cliente", cliente);
@@ -68,7 +66,7 @@ public class ClienteController {
 		
 		clienteService.newCliente(cliente);
 				
-		return new RedirectView("/cliente");
+		return new RedirectView("/clientes");
 		
 	}
 	
@@ -79,7 +77,7 @@ public class ClienteController {
 		model.addAttribute("cliente", cliente);
 		
 		return "editar-cliente";
-		
+	
 	}
 	
 	@PostMapping("/clientes/editar/{id}")

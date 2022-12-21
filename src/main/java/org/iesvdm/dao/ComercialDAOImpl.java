@@ -3,8 +3,6 @@ package org.iesvdm.dao;
 import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Optional;
-
-import org.iesvdm.modelo.Cliente;
 import org.iesvdm.modelo.Comercial;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -52,11 +50,10 @@ public class ComercialDAOImpl implements ComercialDAO {
 		
 		//Sin recuperación de id generado
 //		int rows = jdbcTemplate.update(sqlInsert,
-//							cliente.getNombre(),
-//							cliente.getApellido1(),
-//							cliente.getApellido2(),
-//							cliente.getCiudad(),
-//							cliente.getCategoria()
+//							comercial.getNombre(),
+//							comercial.getApellido1(),
+//							comercial.getApellido2(),
+//							comercial.getComision()
 //					);
 
 		log.info("Insertados {} registros.", rows);
@@ -73,8 +70,7 @@ public class ComercialDAOImpl implements ComercialDAO {
                 							  rs.getString("nombre"), 
                 							  rs.getString("apellido1"),
                 							  rs.getString("apellido2"), 
-                							  rs.getFloat("comisión"))
-                						 	
+                							  rs.getFloat("comisión"))      						 	
         );
 		
 		log.info("Devueltos {} registros.", listComercial.size());
@@ -118,7 +114,7 @@ public class ComercialDAOImpl implements ComercialDAO {
 										, comercial.getComision()
 										, comercial.getId());
 		
-		log.info("Update de Cliente con {} registros actualizados.", rows);
+		log.info("Update de Comercial con {} registros actualizados.", rows);
     
 	}
 	
