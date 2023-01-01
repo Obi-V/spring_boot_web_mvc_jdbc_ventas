@@ -38,8 +38,8 @@ public class PedidoDAOImpl implements PedidoDAO {
                 (rs, rowNum) -> new PedidoDTO(rs.getInt("id"),
                 						 	rs.getDouble("total"),
                 						 	rs.getString("fecha"),
-                						 	rs.getString("id_cliente"),
-                						 	rs.getString("id_comercial"),
+                						 	rs.getInt("id_cliente"),
+                						 	rs.getInt("id_comercial"),
                 						 	rs.getString("nombre_cliente")
         ),idComercial);
 		

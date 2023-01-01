@@ -22,6 +22,7 @@ public class ComercialController {
 	
 	private ComercialService comercialService;
 	
+	
 	//Se utiliza inyección automática por constructor del framework Spring.
 	//Por tanto, se puede omitir la anotación Autowired
 	//@Autowired

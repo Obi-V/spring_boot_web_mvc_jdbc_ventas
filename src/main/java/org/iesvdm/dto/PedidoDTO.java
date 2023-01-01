@@ -12,10 +12,11 @@ import lombok.Data;
 @AllArgsConstructor
 public class PedidoDTO {
 	
-	public PedidoDTO(int i, double d, String string, String string2, String string3, String string4) {
-		
-	}
+	private int id;
+	private double total;
+	private String fecha;
+	private int id_cliente;
+	private int id_comercial;
 	
-	private Pedido pedido;
 	private String nombreCliente;
 }

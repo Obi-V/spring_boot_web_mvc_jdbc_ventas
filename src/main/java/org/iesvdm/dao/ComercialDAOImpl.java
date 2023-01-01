@@ -3,6 +3,8 @@ package org.iesvdm.dao;
 import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Optional;
+
+import org.iesvdm.dto.ComercialDTO;
 import org.iesvdm.modelo.Comercial;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -81,12 +83,12 @@ public class ComercialDAOImpl implements ComercialDAO {
 	@Override
 	public Optional<Comercial> find(int id) {
 		Comercial fab =  jdbcTemplate
-				.queryForObject("SELECT * FROM comercial WHERE id = ?"											
+				.queryForObject("SELECT * FROM comercial WHERE id = ?"						
 								, (rs, rowNum) -> new Comercial(rs.getInt("id"),
-            						 						rs.getString("nombre"),
-            						 						rs.getString("apellido1"),
-            						 						rs.getString("apellido2"),
-            						 						rs.getInt("comisión")) 
+            						 							rs.getString("nombre"),
+            						 							rs.getString("apellido1"),
+            						 							rs.getString("apellido2"),
+            						 							rs.getInt("comisión"))
 								, id
 								);
 		
@@ -103,10 +105,10 @@ public class ComercialDAOImpl implements ComercialDAO {
 		
 		int rows = jdbcTemplate.update("""
 										UPDATE comercial SET 
-														nombre = ?, 
-														apellido1 = ?, 
-														apellido2 = ?,
-														comisión = ?
+												nombre = ?, 
+												apellido1 = ?, 
+												apellido2 = ?,
+												comisión = ?
 												WHERE id = ?
 										""", comercial.getNombre()
 										, comercial.getApellido1()
