@@ -3,6 +3,7 @@ package org.iesvdm.dto;
 import java.util.List;
 import java.util.Optional;
 
+import org.iesvdm.modelo.Cliente;
 import org.iesvdm.modelo.Comercial;
 
 import lombok.AllArgsConstructor;
@@ -32,6 +33,6 @@ public class ComercialDTO {
 	private float mediaPed;
 	private float totalPed;
 	private List<PedidoDTO> pedidos;
+	private List<Cliente> clientes;
 
-	
 }

@@ -48,5 +48,22 @@ public class PedidoDAOImpl implements PedidoDAO {
         return listPed;
         
 	}
-	
+
+	@Override
+	public List<Cliente> getClienteOrd(int idComercial) {
+		List<Cliente> listPed = jdbcTemplate.query(
+                "SELECT C.*, P.total as pedido_total FROM pedido P inner join cliente C ON P.id_cliente = C.id WHERE P.id_comercial=? ORDER BY total DESC;",
+                (rs, rowNum) -> new Cliente(rs.getInt("id"),
+                						 	rs.getString("nombre"),
+                						 	rs.getString("apellido1"),
+                						 	rs.getString("apellido2"),
+                						 	rs.getString("ciudad"),
+                						 	rs.getInt("categoría"),
+                						 	rs.getDouble("pedido_total")
+        ),idComercial);
+		
+		log.info("Devueltos {} registros.", listPed.size());
+		
+        return listPed;
+	}	
 }

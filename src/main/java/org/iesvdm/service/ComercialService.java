@@ -44,6 +44,7 @@ public class ComercialService {
 			Comercial c = optCom.get();
 			ComercialDTO comercialDTO = new ComercialDTO(c);
 			
+			var clientes = pedidoDAO.getClienteOrd(comercialDTO.getId());
 			var pedidos = pedidoDAO.getAll(comercialDTO.getId());
 			float total = 0;
 			float media = 0;
@@ -53,6 +54,7 @@ public class ComercialService {
 			media = total/pedidos.size();
 			
 			comercialDTO.setPedidos(pedidos);
+			comercialDTO.setClientes(clientes);
 			comercialDTO.setTotalPed(total);
 			comercialDTO.setMediaPed(media);
 			

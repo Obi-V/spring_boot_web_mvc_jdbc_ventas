@@ -129,6 +129,34 @@
 			<div style="float: left; width: 14%" th:text="${pedido.id_comercial}">ID Comercial</div>
 			<div style="float: left; width: 14%" th:text="${comercial.nombre}">Nombre Comercial</div>
 		</div>
+		<div class="clearfix">
+			<div style="float: left; width: 50%">
+				<h2>Clientes del comercial</h2>
+			</div>
+		</div>
+		<div class="clearfix">
+			<hr />
+		</div>
+		<div class="clearfix">
+			<div style="float: left; width: 14%">Id Cliente</div>
+			<div style="float: left; width: 14%">Nombre</div>
+			<div style="float: left; width: 14%">Apellido 1</div>
+			<div style="float: left; width: 14%">Apellido 2</div>
+			<div style="float: left; width: 14%">Ciudad</div>
+			<div style="float: left; width: 14%">Categoría</div>
+			<div style="float: left; width: 14%">Total Pedido</div>
+		</div>
+		
+		<div th:each="cliente : ${comercial.clientes}"
+			style="margin-top: 6px;" class="clearfix">
+			<div style="float: left; width: 14%" th:text="${cliente.id}">>Id Cliente</div>
+			<div style="float: left; width: 14%" th:text="${cliente.nombre}">Nombre</div>
+			<div style="float: left; width: 14%" th:text="${cliente.apellido1}">Apellido 1</div>
+			<div style="float: left; width: 14%" th:text="${cliente.apellido2 ?: '&nbsp;'}">Apellido 2</div>
+			<div style="float: left; width: 14%" th:text="${cliente.ciudad}">Ciudad</div>
+			<div style="float: left; width: 14%" th:text="${cliente.categoria}">Categoría</div>
+			<div style="float: left; width: 14%" th:text="${cliente.totalPedido}">Total Pedido</div>
+		</div>
 	</div>
 </body>
 </html>
