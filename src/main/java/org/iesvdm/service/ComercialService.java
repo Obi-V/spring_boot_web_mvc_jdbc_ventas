@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.iesvdm.dao.ComercialDAO;
 import org.iesvdm.dao.PedidoDAO;
 import org.iesvdm.dto.ComercialDTO;
+//import org.iesvdm.mapstruct.ComercialMapper;
 import org.iesvdm.modelo.Comercial;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,8 @@ public class ComercialService {
 
 	private ComercialDAO comercialDAO;
 	private ComercialDTO comercialDTO;
-
+	//private ComercialMapper comercialMapper;
+	
 	// Se utiliza inyección automática por constructor del framework Spring.
 	// Por tanto, se puede omitir la anotación Autowired
 	// @Autowired
@@ -42,6 +44,7 @@ public class ComercialService {
 		Optional<Comercial> optCom = comercialDAO.find(id);
 		if (optCom.isPresent()) {
 			Comercial c = optCom.get();
+			/*ComercialDTO comercialDTO = comercialMapper.comercialAComercialDTO(null, 0, 0, null, null);*/
 			ComercialDTO comercialDTO = new ComercialDTO(c);
 			
 			var clientes = pedidoDAO.getClienteOrd(comercialDTO.getId());

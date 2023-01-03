@@ -30,6 +30,7 @@ public class ComercialDTO {
 	private String apellido1;
 	private String apellido2;
 	private float comision;
+	
 	private float mediaPed;
 	private float totalPed;
 	private List<PedidoDTO> pedidos;
