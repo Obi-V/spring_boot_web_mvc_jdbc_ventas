@@ -31,6 +31,8 @@ public class ComercialDTO {
 	private String apellido2;
 	private float comision;
 	
+	private float pedidomin;
+	private float pedidomax;
 	private float mediaPed;
 	private float totalPed;
 	private List<PedidoDTO> pedidos;

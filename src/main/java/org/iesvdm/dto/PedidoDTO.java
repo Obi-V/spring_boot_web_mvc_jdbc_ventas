@@ -13,7 +13,7 @@ import lombok.Data;
 public class PedidoDTO {
 	
 	private int id;
-	private double total;
+	private float total;
 	private String fecha;
 	private int id_cliente;
 	private int id_comercial;

@@ -15,8 +15,8 @@ public class ComercialService {
 
 	private ComercialDAO comercialDAO;
 	private ComercialDTO comercialDTO;
-	//private ComercialMapper comercialMapper;
-	
+	// private ComercialMapper comercialMapper;
+
 	// Se utiliza inyección automática por constructor del framework Spring.
 	// Por tanto, se puede omitir la anotación Autowired
 	// @Autowired
@@ -44,22 +44,44 @@ public class ComercialService {
 		Optional<Comercial> optCom = comercialDAO.find(id);
 		if (optCom.isPresent()) {
 			Comercial c = optCom.get();
-			/*ComercialDTO comercialDTO = comercialMapper.comercialAComercialDTO(null, 0, 0, null, null);*/
+			/*
+			 * ComercialDTO comercialDTO = comercialMapper.comercialAComercialDTO(null, 0,
+			 * 0, null, null);
+			 */
 			ComercialDTO comercialDTO = new ComercialDTO(c);
-			
+
 			var clientes = pedidoDAO.getClienteOrd(comercialDTO.getId());
 			var pedidos = pedidoDAO.getAll(comercialDTO.getId());
+
 			float total = 0;
 			float media = 0;
-			for(var pedido: pedidos) {
+			float min = pedidos.get(0).getTotal();
+			float max = pedidos.get(0).getTotal();
+			
+			for (var pedido : pedidos) {
+
+				if (pedido.getTotal() > max) {
+					max = pedido.getTotal();
+				}
+			}
+			
+			for (var pedido : pedidos) {
+				if(pedido.getTotal()< min) {
+					min = pedido.getTotal();
+				}
+			}
+			for (var pedido : pedidos) {
 				total += pedido.getTotal();
 			}
-			media = total/pedidos.size();
-			
+
+			media = total / pedidos.size();
+
 			comercialDTO.setPedidos(pedidos);
 			comercialDTO.setClientes(clientes);
 			comercialDTO.setTotalPed(total);
 			comercialDTO.setMediaPed(media);
+			comercialDTO.setPedidomax(max);
+			comercialDTO.setPedidomin(min);
 			
 			return comercialDTO;
 		} else {

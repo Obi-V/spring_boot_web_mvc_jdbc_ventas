@@ -9,6 +9,19 @@
 	display: block;
 	clear: both;
 }
+
+.verde {
+	background-color: green;
+}
+
+.amarillo {
+	background-color: yellow;
+}
+
+.blanco{
+	background-color: white;
+}
+
 </style>
 </head>
 <body>
@@ -41,8 +54,7 @@
 				<label>ID</label>
 			</div>
 			<div style="float: none; width: auto; overflow: hidden;">
-				<input th:value="${comercial.id}" value="Comercial"
-					readonly="readonly" />
+				<input th:value="${comercial.id}" value="id" readonly="readonly" />
 			</div>
 		</div>
 		<div style="margin-top: 6px;" class="clearfix">
@@ -50,7 +62,7 @@
 				<label>Nombre</label>
 			</div>
 			<div style="float: none; width: auto; overflow: hidden;">
-				<input th:value="${comercial.nombre}" value="Comercial"
+				<input th:value="${comercial.nombre}" value="nombre"
 					readonly="readonly" />
 			</div>
 		</div>
@@ -59,7 +71,7 @@
 				<label>Apellido 1</label>
 			</div>
 			<div style="float: none; width: auto; overflow: hidden;">
-				<input th:value="${comercial.apellido1}" value="Comercial"
+				<input th:value="${comercial.apellido1}" value="apellido1"
 					readonly="readonly" />
 			</div>
 		</div>
@@ -68,7 +80,7 @@
 				<label>Apellido 2</label>
 			</div>
 			<div style="float: none; width: auto; overflow: hidden;">
-				<input th:value="${comercial.apellido2}" value="Comercial"
+				<input th:value="${comercial.apellido2}" value="apellido2"
 					readonly="readonly" />
 			</div>
 		</div>
@@ -77,7 +89,7 @@
 				<label>Comisión</label>
 			</div>
 			<div style="float: none; width: auto; overflow: hidden;">
-				<input th:value="${comercial.comision}" value="Comercial"
+				<input th:value="${comercial.comision}" value="comision"
 					readonly="readonly" />
 			</div>
 		</div>
@@ -86,7 +98,7 @@
 				<label>Dinero total pedidos</label>
 			</div>
 			<div style="float: none; width: auto; overflow: hidden;">
-				<input th:value="${comercial.totalPed}" value="Comercial"
+				<input th:value="${comercial.totalPed}" value="Dinero Total"
 					readonly="readonly" />
 			</div>
 		</div>
@@ -95,11 +107,11 @@
 				<label>Media dinero pedidos</label>
 			</div>
 			<div style="float: none; width: auto; overflow: hidden;">
-				<input th:value="${comercial.mediaPed}" value="Comercial"
+				<input th:value="${comercial.mediaPed}" value="Media dinero"
 					readonly="readonly" />
 			</div>
 		</div>
-	
+
 
 		<div class="clearfix">
 			<div style="float: left; width: 50%">
@@ -118,16 +130,22 @@
 			<div style="float: left; width: 14%">ID Comercial</div>
 			<div style="float: left; width: 14%">Nombre Comercial</div>
 		</div>
-		
-		<div th:each="pedido : ${comercial.pedidos}"
-			style="margin-top: 6px;" class="clearfix">
-			<div style="float: left; width: 14%" th:text="${pedido.id}">ID</div>
-			<div style="float: left; width: 14%" th:text="${pedido.total}">Total</div>
-			<div style="float: left; width: 14%" th:text="${pedido.fecha}">Fecha</div>
-			<div style="float: left; width: 14%" th:text="${pedido.id_cliente}">Cliente</div>
-			<div style="float: left; width: 14%" th:text="${pedido.nombreCliente}">Cliente</div>
-			<div style="float: left; width: 14%" th:text="${pedido.id_comercial}">ID Comercial</div>
-			<div style="float: left; width: 14%" th:text="${comercial.nombre}">Nombre Comercial</div>
+
+		<div th:each="pedido : ${comercial.pedidos}" style="margin-top: 6px;"
+			class="clearfix">
+			<div th:class="${pedido.total} == ${comercial.pedidomax}?'verde':(${pedido.total} == ${comercial.pedidomin} ? 'amarillo' : 'blanco')">
+				<div style="float: left; width: 14%" th:text="${pedido.id}">ID</div>
+				<div style="float: left; width: 14%" th:text="${pedido.total}">Total</div>
+				<div style="float: left; width: 14%" th:text="${pedido.fecha}">Fecha</div>
+				<div style="float: left; width: 14%" th:text="${pedido.id_cliente}">Cliente</div>
+				<div style="float: left; width: 14%"
+					th:text="${pedido.nombreCliente}">Cliente</div>
+				<div style="float: left; width: 14%"
+					th:text="${pedido.id_comercial}">ID Comercial</div>
+				<div style="float: left; width: 14%" th:text="${comercial.nombre}">Nombre
+					Comercial</div>
+					&nbsp
+			</div>
 		</div>
 		<div class="clearfix">
 			<div style="float: left; width: 50%">
@@ -146,13 +164,16 @@
 			<div style="float: left; width: 14%">Categoría</div>
 			<div style="float: left; width: 14%">Total Pedido</div>
 		</div>
-		
+
 		<div th:each="cliente : ${comercial.clientes}"
 			style="margin-top: 6px;" class="clearfix">
-			<div style="float: left; width: 14%" th:text="${cliente.id}">>Id Cliente</div>
+			<div style="float: left; width: 14%" th:text="${cliente.id}">>Id
+				Cliente</div>
 			<div style="float: left; width: 14%" th:text="${cliente.nombre}">Nombre</div>
-			<div style="float: left; width: 14%" th:text="${cliente.apellido1}">Apellido 1</div>
-			<div style="float: left; width: 14%" th:text="${cliente.apellido2 ?: '&nbsp;'}">Apellido 2</div>
+			<div style="float: left; width: 14%" th:text="${cliente.apellido1}">Apellido
+				1</div>
+			<div style="float: left; width: 14%"
+				th:text="${cliente.apellido2 ?: '&nbsp;'}">Apellido 2</div>
 			<div style="float: left; width: 14%" th:text="${cliente.ciudad}">Ciudad</div>
 			<div style="float: left; width: 14%" th:text="${cliente.categoria}">Categoría</div>
 			<div style="float: left; width: 14%" th:text="${cliente.totalPedido}">Total Pedido</div>

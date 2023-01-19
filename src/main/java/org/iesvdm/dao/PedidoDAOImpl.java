@@ -36,7 +36,7 @@ public class PedidoDAOImpl implements PedidoDAO {
 		List<PedidoDTO> listPed = jdbcTemplate.query(
                 "SELECT P.*, C.nombre as nombre_cliente FROM pedido P inner join cliente C ON P.id_cliente = C.id WHERE P.id_comercial=?",
                 (rs, rowNum) -> new PedidoDTO(rs.getInt("id"),
-                						 	rs.getDouble("total"),
+                						 	rs.getFloat("total"),
                 						 	rs.getString("fecha"),
                 						 	rs.getInt("id_cliente"),
                 						 	rs.getInt("id_comercial"),
@@ -52,7 +52,7 @@ public class PedidoDAOImpl implements PedidoDAO {
 	@Override
 	public List<Cliente> getClienteOrd(int idComercial) {
 		List<Cliente> listPed = jdbcTemplate.query(
-                "SELECT C.*, P.total as pedido_total FROM pedido P inner join cliente C ON P.id_cliente = C.id WHERE P.id_comercial=? ORDER BY total DESC;",
+                "SELECT C.*, MAX(P.total) as pedido_total FROM pedido P inner join cliente C ON P.id_cliente = C.id WHERE P.id_comercial=? GROUP BY C.id;",
                 (rs, rowNum) -> new Cliente(rs.getInt("id"),
                 						 	rs.getString("nombre"),
                 						 	rs.getString("apellido1"),
