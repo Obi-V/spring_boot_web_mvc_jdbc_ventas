@@ -1,5 +1,9 @@
 package org.iesvdm.modelo;
-
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 //La anotación @Data de lombok proporcionará el código de: 
@@ -15,10 +19,29 @@ public class Cliente {
 	}
 	
 	private long id;
+	
+	@NotBlank(message = "{error.nombre}")
+	@Size(max=30, message = "{error.size.max.nombre}")
 	private String nombre;
+	
+	@NotBlank(message = "{error.apellido}")
+	@Size(max=30, message = "{error.size.max.apellido}")
 	private String apellido1;
+	
 	private String apellido2;
+	
+	@NotBlank(message = "{error.ciudad}")
+	@Size(max=50, message = "{error.size.max.ciudad}")
 	private String ciudad;
+	
+	@Min(value=1000, message = "{error.size.min.categoria}")
+	@Max(value=1000, message = "{error.size.max.categoria}")
 	private int categoria;
+	
+	@Email(message = "{error.email.formato}")
+	@NotBlank(message = "{error.email}")
+	private String email;
+	
 	private double totalPedido;
+
 }

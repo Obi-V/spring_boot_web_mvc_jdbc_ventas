@@ -1,5 +1,5 @@
 package org.iesvdm.mapstruct;
-/*
+
 import java.util.List;
 
 import org.iesvdm.dto.*;
@@ -14,8 +14,8 @@ public interface ComercialMapper{
 	@Mapping(target ="totalPed",source="totalPed")
 	@Mapping(target ="pedidos",source="listPedidoDTO")
 	@Mapping(target ="clientes",source="ListClientes")
-	public ComercialDTO comercialAComercialDTO(Comercial comercial,float mediaPed, float totalPed, List<PedidoDTO> listPedidoDTO, List<Cliente> ListClientes);
+	public ComercialDTO comercialAComercialDTO(Comercial comercial,float mediaPed, float totalPed, List<PedidoDTO> listPedidoDTO, List<Cliente> ListClientes, double pedidomax, double pedidomin);
 	
 	public Comercial comercialDTOAcomercial(ComercialDTO comercial);
 
-}*/
+}
