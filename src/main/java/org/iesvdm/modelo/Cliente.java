@@ -34,7 +34,7 @@ public class Cliente {
 	@Size(max=50, message = "{error.size.max.ciudad}")
 	private String ciudad;
 	
-	@Min(value=1000, message = "{error.size.min.categoria}")
+	@Min(value=100, message = "{error.size.min.categoria}")
 	@Max(value=1000, message = "{error.size.max.categoria}")
 	private int categoria;
 	
