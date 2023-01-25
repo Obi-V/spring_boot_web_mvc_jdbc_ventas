@@ -82,8 +82,7 @@ public class ComercialController {
 			view= "redirect:/comerciales";
 		}
 				
-		return view;
-		
+		return view;	
 	}
 	
 	@GetMapping("/comerciales/editar/{id}")

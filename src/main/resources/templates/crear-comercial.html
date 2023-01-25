@@ -69,6 +69,10 @@
 				<div style="float: left; width: 50%">Comisión</div>
 				<div style="float: none; width: auto; overflow: hidden;">
 					<input th:field="*{comision}" />
+					<ul th:if="${#fields.hasErrors('comision')}">
+						<li th:each="err : ${#fields.errors('comision')}"
+							th:text="${err}" class="error" />
+					</ul>
 				</div>
 			</div>
 		</form>
