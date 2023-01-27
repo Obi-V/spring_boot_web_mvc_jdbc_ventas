@@ -1,11 +1,15 @@
 package org.iesvdm.controlador;
 
 import java.util.List;
+
+import org.iesvdm.exception.MiExcepcion;
 import org.iesvdm.modelo.Cliente;
 import org.iesvdm.service.ClienteService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.view.RedirectView;
 
 import jakarta.validation.Valid;
-
+@ControllerAdvice
 @Controller
 //Se puede fijar ruta base de las peticiones de este controlador.
 //Los mappings de los métodos tendrían este valor /clientes como
@@ -114,4 +118,31 @@ public class ClienteController {
 		
 		return new RedirectView("/clientes");
 	}
+	
+	@GetMapping("/mi-excepcion-runtime")
+	public String miExcepcionRunTimeException() {
+		
+		throw new RuntimeException("Prueba de lanzamiento de excepción y manejo por ControllerAdvice...");
+		
+	}
+	@GetMapping("/mi-excepcion")
+	public String miExcepcion() throws MiExcepcion{
+		
+		throw new MiExcepcion();
+	}
+	
+	@ExceptionHandler(MiExcepcion.class)
+	public String handleMiExcepcion(Model model, MiExcepcion miExcepcion) {
+		model.addAttribute("traza",miExcepcion.getMessage());
+		return "error-mi-excepcion";
+	}
+	
+	@ExceptionHandler(RuntimeException.class)
+	public String handleAllUNcaughtException(Model model, RuntimeException exception) {
+		
+		model.addAttribute("traza", exception.getMessage());
+		
+		return "error-runtime";
+	}
+	
 }
