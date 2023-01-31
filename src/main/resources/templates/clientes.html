@@ -24,8 +24,13 @@
 		<div
 			style="float: none; width: auto; overflow: hidden; min-height: 80px; position: relative;">
 
-			<div style="position: absolute; left: 39%; top: 39%;">
+			<div class="row" style="position: absolute; left: 39%; top: 39%;">
 
+				<form class="pr-2" th:action="@{/comerciales}"
+					style="display: inline;">
+					<input type="submit" th:value="#{comerciales}" />
+				</form>
+				
 				<form action="/clientes/crear">
 					<input type="submit" th:value="#{crear}">
 				</form>
