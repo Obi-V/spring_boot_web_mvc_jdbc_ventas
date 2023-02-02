@@ -9,7 +9,7 @@ public class ChequearRangoValidador implements ConstraintValidator<RangoCategori
 
 	@Override
 	public void initialize(RangoCategoria constraintAnnotation) {
-		this.valoresValidos = constraintAnnotation.valoresValidos();
+		this.valoresValidos = constraintAnnotation.value();
 
 	}
 

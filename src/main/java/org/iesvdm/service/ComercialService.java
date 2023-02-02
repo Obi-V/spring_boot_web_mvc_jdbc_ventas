@@ -5,8 +5,11 @@ import java.util.Optional;
 import org.iesvdm.dao.ComercialDAO;
 import org.iesvdm.dao.PedidoDAO;
 import org.iesvdm.dto.ComercialDTO;
+import org.iesvdm.dto.PedidoDTO;
+import org.iesvdm.modelo.Cliente;
 //import org.iesvdm.mapstruct.ComercialMapper;
 import org.iesvdm.modelo.Comercial;
+import org.iesvdm.modelo.Pedido;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,29 +53,34 @@ public class ComercialService {
 			 */
 			ComercialDTO comercialDTO = new ComercialDTO(c);
 
-			var clientes = pedidoDAO.getClienteOrd(comercialDTO.getId());
-			var pedidos = pedidoDAO.getAll(comercialDTO.getId());
+			List <Cliente> clientes = pedidoDAO.getClienteOrd(comercialDTO.getId());
+			List<PedidoDTO> pedidos = pedidoDAO.getAll(comercialDTO.getId());
 
 			float total = 0;
 			float media = 0;
-			float min = pedidos.get(0).getTotal();
-			float max = pedidos.get(0).getTotal();
+			float min = 0;
+			float max = 0;
 			
-			for (var pedido : pedidos) {
-
-				if (pedido.getTotal() > max) {
-					max = pedido.getTotal();
-				}
-			}
+			if(pedidos.size() != 0) {
 			
-			for (var pedido : pedidos) {
-				if(pedido.getTotal()< min) {
-					min = pedido.getTotal();
+				min = pedidos.get(0).getTotal();
+				max = pedidos.get(0).getTotal();
+				
+				for (var pedido : pedidos) {
+	
+					if (pedido.getTotal() > max) {
+						max = pedido.getTotal();
+					}
 				}
-			}
-			for (var pedido : pedidos) {
-				total += pedido.getTotal();
-			}
+				
+				for (var pedido : pedidos) {
+					if(pedido.getTotal()< min) {
+						min = pedido.getTotal();
+					}
+				}
+				for (var pedido : pedidos) {
+					total += pedido.getTotal();
+				}
 
 			media = total / pedidos.size();
 
@@ -82,6 +90,7 @@ public class ComercialService {
 			comercialDTO.setMediaPed(media);
 			comercialDTO.setPedidomax(max);
 			comercialDTO.setPedidomin(min);
+			}
 			
 			return comercialDTO;
 		} else {

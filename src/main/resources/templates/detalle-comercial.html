@@ -131,7 +131,7 @@
 			<div style="float: left; width: 14%">Nombre Comercial</div>
 		</div>
 
-		<div th:each="pedido : ${comercial.pedidos}" style="margin-top: 6px;"
+		<div th:if="${comercial.pedidos.size()!= 0}" th:each="pedido : ${comercial.pedidos}" style="margin-top: 6px;"
 			class="clearfix">
 			<div th:class="${pedido.total} == ${comercial.pedidomax}?'verde':(${pedido.total} == ${comercial.pedidomin} ? 'amarillo' : 'blanco')">
 				<div style="float: left; width: 14%" th:text="${pedido.id}">ID</div>
@@ -165,7 +165,7 @@
 			<div style="float: left; width: 14%">Total Pedido</div>
 		</div>
 
-		<div th:each="cliente : ${comercial.clientes}"
+		<div th:if="${comercial.clientes.size() != 0}" th:each="cliente : ${comercial.clientes}"
 			style="margin-top: 6px;" class="clearfix">
 			<div style="float: left; width: 14%" th:text="${cliente.id}">>Id
 				Cliente</div>

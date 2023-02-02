@@ -119,30 +119,6 @@ public class ClienteController {
 		return new RedirectView("/clientes");
 	}
 	
-	@GetMapping("/mi-excepcion-runtime")
-	public String miExcepcionRunTimeException() {
-		
-		throw new RuntimeException("Prueba de lanzamiento de excepción y manejo por ControllerAdvice...");
-		
-	}
-	@GetMapping("/mi-excepcion")
-	public String miExcepcion() throws MiExcepcion{
-		
-		throw new MiExcepcion();
-	}
-	
-	@ExceptionHandler(MiExcepcion.class)
-	public String handleMiExcepcion(Model model, MiExcepcion miExcepcion) {
-		model.addAttribute("traza",miExcepcion.getMessage());
-		return "error-mi-excepcion";
-	}
-	
-	@ExceptionHandler(RuntimeException.class)
-	public String handleAllUNcaughtException(Model model, RuntimeException exception) {
-		
-		model.addAttribute("traza", exception.getMessage());
-		
-		return "error-runtime";
-	}
+
 	
 }

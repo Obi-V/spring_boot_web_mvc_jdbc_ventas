@@ -40,5 +40,11 @@ public class ComercialDTO {
 	private float totalPed;
 	private List<PedidoDTO> pedidos;
 	private List<Cliente> clientes;
-
+	
+	//MAP
+	private int numPedTotal;
+	private int numPedidoTrimestre;
+	private int numPedidoSemestre;
+	private int numPedidoAnio;
+	private int numPedidoLustro;
 }

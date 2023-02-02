@@ -13,11 +13,11 @@ import jakarta.validation.Payload;
 @Constraint(validatedBy = ChequearRangoValidador.class)
 @Target({ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface RangoCategoria {
+public @interface RangoCategoria{
 
 	String message() default"Error, categoría solo puede ser: 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 ";
 	
-	int[] valoresValidos() default {100,200,300,400,500,600,700,800,900,1000};
+	int[] value() default {100,200,300,400,500,600,700,800,900,1000};
 	
 	//Para validación en wizards, poco uso en la actualidad.
 		Class<?>[] groups() default {};
